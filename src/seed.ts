@@ -5,6 +5,7 @@ export const seed: NonNullable<Config['onInit']> = async (payload): Promise<void
     collection: 'mosques',
     data: {
       name: 'Masjid Putra',
+      slug: 'masjid-putra',
       address: {
         addressLine1: 'Persiaran Perdana',
         postcode: '62502',
@@ -31,6 +32,7 @@ export const seed: NonNullable<Config['onInit']> = async (payload): Promise<void
     collection: 'mosques',
     data: {
       name: 'Masjid Sultan Idris Shah II',
+      slug: 'masjid-sultan-idris-shah-ii',
       address: {
         addressLine1: 'Jalan Panglima Bukit Gantang Wahab',
         postcode: '31650',

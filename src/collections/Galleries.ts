@@ -1,3 +1,4 @@
+import { slugField } from '@/fields/slug'
 import type { CollectionConfig } from 'payload'
 
 export const Galleries: CollectionConfig = {
@@ -22,5 +23,6 @@ export const Galleries: CollectionConfig = {
         },
       ],
     },
+    ...slugField(),
   ],
 }

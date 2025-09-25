@@ -1,3 +1,4 @@
+import { slugField } from '@/fields/slug'
 import type { CollectionConfig } from 'payload'
 
 export const Mosques: CollectionConfig = {
@@ -78,5 +79,6 @@ export const Mosques: CollectionConfig = {
       ],
     },
     { name: 'coordinate', type: 'point', required: false },
+    ...slugField('name'),
   ],
 }

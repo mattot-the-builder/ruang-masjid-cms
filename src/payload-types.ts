@@ -155,6 +155,8 @@ export interface Mosque {
    * @maxItems 2
    */
   coordinate?: [number, number] | null;
+  slug: string;
+  slugLock?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -222,6 +224,8 @@ export interface Gallery {
         id?: string | null;
       }[]
     | null;
+  slug: string;
+  slugLock?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -327,6 +331,8 @@ export interface MosquesSelect<T extends boolean = true> {
         id?: T;
       };
   coordinate?: T;
+  slug?: T;
+  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -390,6 +396,8 @@ export interface GalleriesSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  slug?: T;
+  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
 }
