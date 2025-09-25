@@ -70,6 +70,7 @@ export interface Config {
     mosques: Mosque;
     users: User;
     media: Media;
+    galleries: Gallery;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,12 +80,13 @@ export interface Config {
     mosques: MosquesSelect<false> | MosquesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: number;
+    defaultIDType: string;
   };
   globals: {};
   globalsSelect: {};
@@ -120,7 +122,7 @@ export interface UserAuthOperations {
  * via the `definition` "mosques".
  */
 export interface Mosque {
-  id: number;
+  id: string;
   name: string;
   address: {
     addressLine1: string;
@@ -144,7 +146,7 @@ export interface Mosque {
         bankName: string;
         accountHolderName: string;
         accountNumber: string;
-        bankQrCode?: (number | null) | Media;
+        bankQrCode?: (string | null) | Media;
         id?: string | null;
       }[]
     | null;
@@ -161,7 +163,7 @@ export interface Mosque {
  * via the `definition` "media".
  */
 export interface Media {
-  id: number;
+  id: string;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -180,11 +182,11 @@ export interface Media {
  * via the `definition` "users".
  */
 export interface User {
-  id: number;
+  id: string;
   roles?: ('super-admin' | 'admin')[] | null;
   mosques?:
     | {
-        mosque: number | Mosque;
+        mosque: string | Mosque;
         id?: string | null;
       }[]
     | null;
@@ -208,27 +210,48 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galleries".
+ */
+export interface Gallery {
+  id: string;
+  mosque?: (string | null) | Mosque;
+  title: string;
+  images?:
+    | {
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: number;
+  id: string;
   document?:
     | ({
         relationTo: 'mosques';
-        value: number | Mosque;
+        value: string | Mosque;
       } | null)
     | ({
         relationTo: 'users';
-        value: number | User;
+        value: string | User;
       } | null)
     | ({
         relationTo: 'media';
-        value: number | Media;
+        value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'galleries';
+        value: string | Gallery;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -238,10 +261,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: number;
+  id: string;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   key?: string | null;
   value?:
@@ -261,7 +284,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: number;
+  id: string;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -353,6 +376,22 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galleries_select".
+ */
+export interface GalleriesSelect<T extends boolean = true> {
+  mosque?: T;
+  title?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

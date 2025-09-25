@@ -13,6 +13,7 @@ import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant'
 import { Mosques } from './collections/Mosques'
 import { isSuperAdmin } from './access/isSuperAdmin'
 import { seed } from './seed'
+import { Galleries } from './collections/Galleries'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Mosques, Users, Media],
+  collections: [Mosques, Users, Media, Galleries],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -34,13 +35,14 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
+    idType: 'uuid',
   }),
   sharp,
   plugins: [
     payloadCloudPlugin(),
     multiTenantPlugin<Config>({
       tenantsSlug: 'mosques',
-      collections: {},
+      collections: { galleries: {} },
       tenantField: { name: 'mosque' },
       tenantsArrayField: {
         arrayFieldName: 'mosques',
