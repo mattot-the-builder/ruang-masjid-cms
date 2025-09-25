@@ -122,9 +122,10 @@ export interface UserAuthOperations {
 export interface Mosque {
   id: number;
   name: string;
+  telephone?: string | null;
   address: {
-    address_line1: string;
-    address_line2?: string | null;
+    addressLine1: string;
+    addressLine2?: string | null;
     postcode: string;
     district: string;
     state: string;
@@ -263,11 +264,12 @@ export interface PayloadMigration {
  */
 export interface MosquesSelect<T extends boolean = true> {
   name?: T;
+  telephone?: T;
   address?:
     | T
     | {
-        address_line1?: T;
-        address_line2?: T;
+        addressLine1?: T;
+        addressLine2?: T;
         postcode?: T;
         district?: T;
         state?: T;

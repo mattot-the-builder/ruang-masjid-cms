@@ -7,17 +7,18 @@ export const Mosques: CollectionConfig = {
   },
   fields: [
     { name: 'name', type: 'text', required: true },
+    { name: 'telephone', type: 'text', required: false },
     {
       name: 'address',
       type: 'group',
       fields: [
         {
-          name: 'address_line1',
+          name: 'addressLine1',
           type: 'text',
           required: true,
         },
         {
-          name: 'address_line2',
+          name: 'addressLine2',
           type: 'text',
         },
         {
