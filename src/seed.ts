@@ -4,34 +4,54 @@ export const seed: NonNullable<Config['onInit']> = async (payload): Promise<void
   const masjid1 = await payload.create({
     collection: 'mosques',
     data: {
-      name: 'Masjid Contoh 1',
-      coordinate: [10, 20],
+      name: 'Masjid Putra',
+      address: {
+        address_line1: 'Persiaran Perdana',
+        postcode: '62502',
+        district: 'Presint 1',
+        state: 'W.P. Putrajaya',
+      },
       bankAccounts: [
-        { bankName: 'Maybank', accountHolderName: 'Masjid Contoh 1', accountNumber: '01010101010' },
-        { bankName: 'CIMB', accountHolderName: 'Masjid Contoh 1', accountNumber: '01010101010' },
+        { bankName: 'Maybank', accountHolderName: 'Masjid Putra', accountNumber: '01010101010' },
+        { bankName: 'CIMB', accountHolderName: 'Masjid Putra', accountNumber: '01010101010' },
         {
           bankName: 'Public Bank',
-          accountHolderName: 'Masjid Contoh 1',
+          accountHolderName: 'Masjid Putra',
           accountNumber: '01010101010',
         },
       ],
+      coordinate: [10, 20],
     },
   })
 
   const masjid2 = await payload.create({
     collection: 'mosques',
     data: {
-      name: 'Masjid Contoh 2',
-      coordinate: [20, 10],
+      name: 'Masjid Sultan Idris Shah II',
+      address: {
+        address_line1: 'Jalan Panglima Bukit Gantang Wahab',
+        postcode: '31650',
+        district: 'Ipoh',
+        state: 'Perak',
+      },
       bankAccounts: [
-        { bankName: 'Maybank', accountHolderName: 'Masjid Contoh 2', accountNumber: '01010101010' },
-        { bankName: 'CIMB', accountHolderName: 'Masjid Contoh 2', accountNumber: '01010101010' },
+        {
+          bankName: 'Maybank',
+          accountHolderName: 'Masjid Sultan Idris Shah II',
+          accountNumber: '01010101010',
+        },
+        {
+          bankName: 'CIMB',
+          accountHolderName: 'Masjid Sultan Idris Shah II',
+          accountNumber: '01010101010',
+        },
         {
           bankName: 'Public Bank',
-          accountHolderName: 'Masjid Contoh 2',
+          accountHolderName: 'Masjid Sultan Idris Shah II',
           accountNumber: '01010101010',
         },
       ],
+      coordinate: [20, 10],
     },
   })
 
@@ -45,5 +65,5 @@ export const seed: NonNullable<Config['onInit']> = async (payload): Promise<void
   })
 
   console.log('Seeded masjid: ', masjid1.name, masjid2.name)
-  console.log('Seeded superAdmin: ', superAdmin.email, superAdmin.password)
+  console.log('Seeded superAdmin: ', superAdmin.email)
 }

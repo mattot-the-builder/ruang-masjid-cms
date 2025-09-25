@@ -8,6 +8,36 @@ export const Mosques: CollectionConfig = {
   fields: [
     { name: 'name', type: 'text', required: true },
     {
+      name: 'address',
+      type: 'group',
+      fields: [
+        {
+          name: 'address_line1',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'address_line2',
+          type: 'text',
+        },
+        {
+          name: 'postcode',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'district',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'state',
+          type: 'text',
+          required: true,
+        },
+      ],
+    },
+    {
       name: 'bankAccounts',
       type: 'array',
       fields: [
