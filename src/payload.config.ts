@@ -12,6 +12,7 @@ import { Media } from './collections/Media'
 import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant'
 import { Mosques } from './collections/Mosques'
 import { isSuperAdmin } from './access/isSuperAdmin'
+import { seed } from './seed'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -52,4 +53,9 @@ export default buildConfig({
     }),
     // storage-adapter-placeholder
   ],
+  onInit: async (args) => {
+    if (process.env.SEED_DB) {
+      await seed(args)
+    }
+  },
 })
