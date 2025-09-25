@@ -7,7 +7,6 @@ export const Mosques: CollectionConfig = {
   },
   fields: [
     { name: 'name', type: 'text', required: true },
-    { name: 'telephone', type: 'text', required: false },
     {
       name: 'address',
       type: 'group',
@@ -35,6 +34,36 @@ export const Mosques: CollectionConfig = {
           name: 'state',
           type: 'text',
           required: true,
+        },
+      ],
+    },
+    {
+      name: 'contact',
+      type: 'group',
+      fields: [
+        { name: 'telephone', type: 'text', required: false },
+        {
+          name: 'socialMedia',
+          type: 'array',
+          fields: [
+            {
+              name: 'platform',
+              type: 'select',
+              options: [
+                { label: 'Facebook', value: 'facebook' },
+                { label: 'Instagram', value: 'instagram' },
+                { label: 'Twitter', value: 'twitter' },
+                { label: 'YouTube', value: 'youtube' },
+                { label: 'TikTok', value: 'tiktok' },
+              ],
+              required: true,
+            },
+            {
+              name: 'url',
+              type: 'text',
+              required: true,
+            },
+          ],
         },
       ],
     },

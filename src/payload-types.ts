@@ -122,13 +122,22 @@ export interface UserAuthOperations {
 export interface Mosque {
   id: number;
   name: string;
-  telephone?: string | null;
   address: {
     addressLine1: string;
     addressLine2?: string | null;
     postcode: string;
     district: string;
     state: string;
+  };
+  contact?: {
+    telephone?: string | null;
+    socialMedia?:
+      | {
+          platform: 'facebook' | 'instagram' | 'twitter' | 'youtube' | 'tiktok';
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
   };
   bankAccounts?:
     | {
@@ -264,7 +273,6 @@ export interface PayloadMigration {
  */
 export interface MosquesSelect<T extends boolean = true> {
   name?: T;
-  telephone?: T;
   address?:
     | T
     | {
@@ -273,6 +281,18 @@ export interface MosquesSelect<T extends boolean = true> {
         postcode?: T;
         district?: T;
         state?: T;
+      };
+  contact?:
+    | T
+    | {
+        telephone?: T;
+        socialMedia?:
+          | T
+          | {
+              platform?: T;
+              url?: T;
+              id?: T;
+            };
       };
   bankAccounts?:
     | T

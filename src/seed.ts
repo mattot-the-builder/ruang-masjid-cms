@@ -5,12 +5,14 @@ export const seed: NonNullable<Config['onInit']> = async (payload): Promise<void
     collection: 'mosques',
     data: {
       name: 'Masjid Putra',
-      telephone: '03-88885678',
       address: {
         addressLine1: 'Persiaran Perdana',
         postcode: '62502',
         district: 'Presint 1',
         state: 'W.P. Putrajaya',
+      },
+      contact: {
+        telephone: '03-88885678',
       },
       bankAccounts: [
         { bankName: 'Maybank', accountHolderName: 'Masjid Putra', accountNumber: '01010101010' },
@@ -29,12 +31,14 @@ export const seed: NonNullable<Config['onInit']> = async (payload): Promise<void
     collection: 'mosques',
     data: {
       name: 'Masjid Sultan Idris Shah II',
-      telephone: '0135237989',
       address: {
         addressLine1: 'Jalan Panglima Bukit Gantang Wahab',
         postcode: '31650',
         district: 'Ipoh',
         state: 'Perak',
+      },
+      contact: {
+        telephone: '0135237989',
       },
       bankAccounts: [
         {
