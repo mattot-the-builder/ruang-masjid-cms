@@ -122,6 +122,15 @@ export interface UserAuthOperations {
 export interface Mosque {
   id: number;
   name: string;
+  bankAccounts?:
+    | {
+        bankName: string;
+        accountHolderName: string;
+        accountNumber: string;
+        bankQrCode?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
   /**
    * @minItems 2
    * @maxItems 2
@@ -129,6 +138,25 @@ export interface Mosque {
   coordinate?: [number, number] | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -160,25 +188,6 @@ export interface User {
       }[]
     | null;
   password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -247,6 +256,15 @@ export interface PayloadMigration {
  */
 export interface MosquesSelect<T extends boolean = true> {
   name?: T;
+  bankAccounts?:
+    | T
+    | {
+        bankName?: T;
+        accountHolderName?: T;
+        accountNumber?: T;
+        bankQrCode?: T;
+        id?: T;
+      };
   coordinate?: T;
   updatedAt?: T;
   createdAt?: T;
