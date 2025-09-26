@@ -5,7 +5,7 @@ import getAuthenticatedUser from '@/helpers/auth/get-authenticated-user'
 import { Button } from '@/components/ui/button';
 
 function Hero() {
-    return <div className="w-full h-[36rem] bg-red-100"></div>
+    return <div className="w-full max-w-(--breakpoint-2xl) mx-auto  h-[36rem] bg-red-100"></div>
 }
 
 export default async function HomePage() {
