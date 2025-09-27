@@ -36,10 +36,10 @@ export default function MobileNavbar({ navbarData }: { navbarData: NavbarDataTyp
             <div className="px-6">
                 {navbarData.map((item, index) => {
                     if (item.children) {
-                        return <MobileDropdownNavigationLink key={index} {...item} />
+                        return <MobileDropdownNavigationLink key={index} onClick={handleToggle} {...item} />
                     }
 
-                    return <MobileNavigationLink key={index} {...item} />
+                    return <MobileNavigationLink key={index} onClick={handleToggle} {...item} />
                 })}
             </div>
         )}
