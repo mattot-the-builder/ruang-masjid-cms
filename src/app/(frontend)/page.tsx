@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import ResponsiveSection from '@/components/layout/ResponsiveSection';
 import Image from 'next/image';
+import Hero from '@/components/common/Hero';
 
 async function getHomePage() {
     const mosque = await getCurrentMosque();
@@ -22,18 +23,6 @@ async function getHomePage() {
     return homePage
 }
 
-function Hero() {
-    return <div className="w-full max-w-(--breakpoint-2xl) mx-auto  h-[36rem] overflow-clip bg-red-100">
-        <Image
-            src="https://picsum.photos/1920/1080"
-            alt="picsum photo"
-            width={1920}
-            height={1080}
-            className="object-cover"
-        />
-    </div>
-}
-
 export async function generateMetadata(): Promise<Metadata> {
     const homePage = await getHomePage();
 
@@ -47,9 +36,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
     const homePage = await getHomePage();
 
+    console.log(homePage.hero)
+
     return (
         <div className="home">
-            <Hero />
+            <Hero {...homePage.hero} />
             <ResponsiveSection>
                 {homePage.title}
             </ResponsiveSection>

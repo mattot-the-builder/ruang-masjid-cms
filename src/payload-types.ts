@@ -189,6 +189,10 @@ export interface Homepage {
   id: string;
   mosque?: (string | null) | Mosque;
   title: string;
+  hero: {
+    image: string | Media;
+    heading?: string | null;
+  };
   content?: {
     root: {
       type: string;
@@ -375,6 +379,12 @@ export interface MosquesSelect<T extends boolean = true> {
 export interface HomepageSelect<T extends boolean = true> {
   mosque?: T;
   title?: T;
+  hero?:
+    | T
+    | {
+        image?: T;
+        heading?: T;
+      };
   content?: T;
   updatedAt?: T;
   createdAt?: T;

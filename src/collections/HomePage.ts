@@ -13,6 +13,24 @@ export const HomePage: CollectionConfig = {
             required: true,
         },
         {
+            name: 'hero',
+            type: 'group',
+            required: false,
+            fields: [
+                {
+                    name: 'image',
+                    type: 'relationship',
+                    relationTo: 'media',
+                    required: true
+                },
+                {
+                    name: 'heading',
+                    type: 'text',
+                    required: false
+                }
+            ]
+        },
+        {
             name: 'content',
             type: 'richText',
             editor: lexicalEditor(),
