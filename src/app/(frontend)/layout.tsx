@@ -13,18 +13,18 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
     return (
         <html lang="en" suppressHydrationWarning>
-            <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-            >
-                <body>
+            <body>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
                     <Navbar />
                     <main>{children}</main>
                     <Footer />
-                </body>
-            </ThemeProvider>
+                </ThemeProvider>
+            </body>
         </html>
     )
 }

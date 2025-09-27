@@ -6,6 +6,8 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import ResponsiveSection from '@/components/layout/ResponsiveSection';
 import Hero from '@/components/common/Hero';
+import { RichText } from '@payloadcms/richtext-lexical/react'
+import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 async function getHomePage() {
     const mosque = await getCurrentMosque();
@@ -35,11 +37,14 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
     const homePage = await getHomePage();
 
+    const richTextData = homePage.content as SerializedEditorState
+
+
     return (
         <main>
             <Hero {...homePage.hero} />
             <ResponsiveSection>
-                {homePage.title}
+                <RichText data={richTextData} className="prose dark:prose-invert" />
             </ResponsiveSection>
         </main>
     )
