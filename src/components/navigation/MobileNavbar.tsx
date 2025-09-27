@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import MobileNavigationLink from "@/components/navigation/MobileNavigationLink"
 import { NavbarDataType } from "@/components/layout/Navbar"
 import MobileDropdownNavigationLink from "@/components/navigation/MobileDropdownNavigationLink"
+import { ModeToggle } from "@/components/layout/ModeToggle"
 
 export default function MobileNavbar({ navbarData }: { navbarData: NavbarDataType[] }) {
     const [isOpen, setIsOpen] = useState(false)
@@ -30,7 +31,10 @@ export default function MobileNavbar({ navbarData }: { navbarData: NavbarDataTyp
             <Link href="/" className="font-semibold text-xl">
                 RuangMasjid.
             </Link>
-            <button onClick={handleToggle}>{isOpen ? <X /> : <Menu />}</button>
+            <div className="flex gap-2">
+                <ModeToggle />
+                <button onClick={handleToggle}>{isOpen ? <X /> : <Menu />}</button>
+            </div>
         </div>
         {isOpen && (
             <div className="px-6">

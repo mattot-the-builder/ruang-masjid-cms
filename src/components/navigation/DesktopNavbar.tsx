@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import NavigationLink from "@/components/navigation/NavigationLink";
 import DropdownNavigationLink from "@/components/navigation/DropdownNavigationLink";
+import { ModeToggle } from "@/components/layout/ModeToggle";
 
 export default function DesktopNavbar({ navbarData }: { navbarData: NavbarDataType[] }) {
     return <nav className="hidden w-full border-b lg:block">
@@ -21,7 +22,10 @@ export default function DesktopNavbar({ navbarData }: { navbarData: NavbarDataTy
                     })}
                 </ul>
             </div>
-            <Button size="lg">Login</Button>
+            <div className="flex items-center gap-2">
+                <ModeToggle />
+                <Button size="lg">Login</Button>
+            </div>
         </div>
     </nav>
 }
