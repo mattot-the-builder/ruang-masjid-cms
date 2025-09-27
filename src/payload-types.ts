@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     mosques: Mosque;
+    homepage: Homepage;
     users: User;
     media: Media;
     galleries: Gallery;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     mosques: MosquesSelect<false> | MosquesSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
@@ -181,6 +183,32 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: string;
+  mosque?: (string | null) | Mosque;
+  title: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -239,6 +267,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mosques';
         value: string | Mosque;
+      } | null)
+    | ({
+        relationTo: 'homepage';
+        value: string | Homepage;
       } | null)
     | ({
         relationTo: 'users';
@@ -333,6 +365,17 @@ export interface MosquesSelect<T extends boolean = true> {
   coordinate?: T;
   slug?: T;
   slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  mosque?: T;
+  title?: T;
+  content?: T;
   updatedAt?: T;
   createdAt?: T;
 }

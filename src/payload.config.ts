@@ -14,50 +14,51 @@ import { Mosques } from './collections/Mosques'
 import { isSuperAdmin } from './access/isSuperAdmin'
 import { seed } from './seed'
 import { Galleries } from './collections/Galleries'
+import { HomePage } from './collections/HomePage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  admin: {
-    user: Users.slug,
-    importMap: {
-      baseDir: path.resolve(dirname),
+    admin: {
+        user: Users.slug,
+        importMap: {
+            baseDir: path.resolve(dirname),
+        },
     },
-  },
-  collections: [Mosques, Users, Media, Galleries],
-  editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
-  typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
-  },
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URI || '',
+    collections: [Mosques, HomePage, Users, Media, Galleries,],
+    editor: lexicalEditor(),
+    secret: process.env.PAYLOAD_SECRET || '',
+    typescript: {
+        outputFile: path.resolve(dirname, 'payload-types.ts'),
     },
-    idType: 'uuid',
-  }),
-  sharp,
-  plugins: [
-    payloadCloudPlugin(),
-    multiTenantPlugin<Config>({
-      tenantsSlug: 'mosques',
-      collections: { galleries: {} },
-      tenantField: { name: 'mosque' },
-      tenantsArrayField: {
-        arrayFieldName: 'mosques',
-        arrayTenantFieldName: 'mosque',
-      },
-      tenantSelectorLabel: {
-        en: 'Mosque',
-      },
-      userHasAccessToAllTenants: (user) => isSuperAdmin(user),
+    db: postgresAdapter({
+        pool: {
+            connectionString: process.env.DATABASE_URI || '',
+        },
+        idType: 'uuid',
     }),
-    // storage-adapter-placeholder
-  ],
-  onInit: async (args) => {
-    if (process.env.SEED_DB) {
-      await seed(args)
-    }
-  },
+    sharp,
+    plugins: [
+        payloadCloudPlugin(),
+        multiTenantPlugin<Config>({
+            tenantsSlug: 'mosques',
+            collections: { homepage: { isGlobal: true }, galleries: {} },
+            tenantField: { name: 'mosque' },
+            tenantsArrayField: {
+                arrayFieldName: 'mosques',
+                arrayTenantFieldName: 'mosque',
+            },
+            tenantSelectorLabel: {
+                en: 'Mosque',
+            },
+            userHasAccessToAllTenants: (user) => isSuperAdmin(user),
+        }),
+        // storage-adapter-placeholder
+    ],
+    onInit: async (args) => {
+        if (process.env.SEED_DB) {
+            await seed(args)
+        }
+    },
 })
