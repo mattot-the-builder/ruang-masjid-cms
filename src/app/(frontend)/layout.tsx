@@ -1,5 +1,5 @@
-import React from 'react'
 import '../globals.css'
+import React from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ThemeProvider from '@/providers/ThemeProvider'
@@ -12,7 +12,7 @@ export const metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="ms-MY" suppressHydrationWarning>
             <body>
                 <ThemeProvider
                     attribute="class"
