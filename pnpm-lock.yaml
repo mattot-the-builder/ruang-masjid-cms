@@ -84,6 +84,9 @@ importers:
         specifier: ^4.1.13
         version: 4.1.13
     devDependencies:
+      '@eslint/eslintrc':
+        specifier: ^3.3.1
+        version: 3.3.1
       '@playwright/test':
         specifier: 1.54.1
         version: 1.54.1
@@ -1493,10 +1496,20 @@ packages:
     peerDependencies:
       payload: 3.56.0
 
+  '@payloadcms/db-vercel-postgres@3.57.0':
+    resolution: {integrity: sha512-XB1WTf8FlW6lV7NUb30I6LPImnhZKmc5n2RjhSDaC0ljxYJXUSRpTZz6Pgp50Po0IKO9IDZ/84J4S8LWPRPsgA==}
+    peerDependencies:
+      payload: 3.57.0
+
   '@payloadcms/drizzle@3.56.0':
     resolution: {integrity: sha512-Sptbgbi/3V+eSCJnFQW3M0jqbw3WJf94JNZljj974Fv0hfp+otFcG/6P3+owrJclNdDZJpdu7uVvgEZzbhc5Eg==}
     peerDependencies:
       payload: 3.56.0
+
+  '@payloadcms/drizzle@3.57.0':
+    resolution: {integrity: sha512-LMWtPXgxCKsU7nsIhJu/+4a+6HbOLzLwdVHKL+bpcJ4fIdc0J7SdZLCaq/mREs/3NGWkAxgL2g54f7ta31EWiA==}
+    peerDependencies:
+      payload: 3.57.0
 
   '@payloadcms/email-nodemailer@3.56.0':
     resolution: {integrity: sha512-+pQam4dV3QF6p5mt061SbMiaxlAtCfz04BxFOBNPDhZtUjSa+y6DvD+ABTo/DRHjp4dcE6QXt/3HgR1Sjofi9A==}
@@ -6780,7 +6793,6 @@ snapshots:
   '@neondatabase/serverless@0.9.5':
     dependencies:
       '@types/pg': 8.11.6
-    optional: true
 
   '@next/env@15.4.4': {}
 
@@ -7932,7 +7944,6 @@ snapshots:
       '@types/node': 22.18.6
       pg-protocol: 1.10.3
       pg-types: 4.1.0
-    optional: true
 
   '@types/react-dom@19.1.6(@types/react@19.1.8)':
     dependencies:
@@ -8112,7 +8123,6 @@ snapshots:
       bufferutil: 4.0.9
       utf-8-validate: 6.0.5
       ws: 8.18.3(bufferutil@4.0.9)(utf-8-validate@6.0.5)
-    optional: true
 
   '@vitejs/plugin-react@4.5.2(vite@7.1.7(@types/node@22.18.6)(jiti@2.6.0)(lightningcss@1.30.1)(sass@1.77.4)(tsx@4.20.3))':
     dependencies:
@@ -8371,7 +8381,6 @@ snapshots:
   bufferutil@4.0.9:
     dependencies:
       node-gyp-build: 4.8.4
-    optional: true
 
   busboy@1.6.0:
     dependencies:
@@ -9948,8 +9957,7 @@ snapshots:
     dependencies:
       whatwg-url: 5.0.0
 
-  node-gyp-build@4.8.4:
-    optional: true
+  node-gyp-build@4.8.4: {}
 
   node-releases@2.0.21: {}
 
@@ -11028,7 +11036,6 @@ snapshots:
   utf-8-validate@6.0.5:
     dependencies:
       node-gyp-build: 4.8.4
-    optional: true
 
   utf8-byte-length@1.0.5: {}
 
