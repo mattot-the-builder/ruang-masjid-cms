@@ -36,8 +36,6 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
     const homePage = await getHomePage();
 
-    console.log(homePage.hero)
-
     return (
         <div className="home">
             <Hero {...homePage.hero} />

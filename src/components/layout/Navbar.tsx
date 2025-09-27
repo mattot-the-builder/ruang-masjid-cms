@@ -1,50 +1,47 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import NavigationLink from "@/components/navigation/NavigationLink";
-import DropdownNavigationLink from "@/components/navigation/DropdownNavigationLink";
 import MobileNavbar from "@/components/navigation/MobileNavbar";
+import DesktopNavbar from "../navigation/DesktopNavbar";
+import { Navigation } from "@/types";
+import getCurrentMosque from "@/helpers/get-current-mosque";
+import payload from "@/helpers/payload/get-payload-instance";
 
-const NavbarData = [
-    { title: "Laman Utama", href: "/" },
-    {
-        title: "Galeri", children: [
-            { title: "Sampel Galeri 1", href: "/" },
-            { title: "Sampel Galeri 2", href: "/galeri/2" },
-            { title: "Sampel Galeri 3", href: "/galeri/3" },
-        ]
-    },
-    { title: "Hubungi Kami", href: "/hubungi-kami" },
-]
 
-export type NavbarDataType = typeof NavbarData
+export type NavbarDataType = { title: string, href: string, children?: undefined } | { title: string, children: Navigation[], href?: undefined }
 
-export default function Navbar() {
+export default async function Navbar() {
+    const mosque = await getCurrentMosque();
+
+    const galleries = await payload.find({
+        collection: "galleries",
+        where: {
+            mosque: { equals: mosque.id }
+        }
+    })
+
+    const navbarData: NavbarDataType[] = [
+        { title: "Laman Utama", href: "/" },
+    ]
+
+    if (galleries.totalDocs > 0) {
+        const galleriesNavbarData: NavbarDataType = {
+            title: "Galeri",
+            children: galleries.docs.map((gallery) => {
+                return {
+                    title: gallery.title,
+                    href: `/galeri/${gallery.slug}`
+                }
+            })
+        }
+
+        navbarData.push(galleriesNavbarData)
+    }
+
+    navbarData.push({ title: "Hubungi Kami", href: "/hubungi-kami" })
+
     return (
         <>
-            <DesktopNavbar />
-            <MobileNavbar navbarData={NavbarData} />
+            <DesktopNavbar navbarData={navbarData} />
+            <MobileNavbar navbarData={navbarData} />
         </>
     )
 }
 
-function DesktopNavbar() {
-    return <nav className="hidden w-full border-b lg:block">
-        <div className="p-6 max-w-(--breakpoint-2xl) mx-auto flex justify-between items-center xl:px-12">
-            <div className="flex items-center gap-4">
-                <Link href="/" className="font-semibold text-xl">
-                    RuangMasjid.
-                </Link>
-                <ul className="flex gap-2">
-                    {NavbarData.map((item, index) => {
-                        if (item.children) {
-                            return <DropdownNavigationLink key={index} {...item} />
-                        }
-
-                        return <NavigationLink key={index} title={item.title} href={item.href} />
-                    })}
-                </ul>
-            </div>
-            <Button size="lg">Login</Button>
-        </div>
-    </nav>
-}

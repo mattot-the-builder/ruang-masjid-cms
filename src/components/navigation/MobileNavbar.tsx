@@ -8,7 +8,7 @@ import MobileNavigationLink from "@/components/navigation/MobileNavigationLink"
 import { NavbarDataType } from "@/components/layout/Navbar"
 import MobileDropdownNavigationLink from "@/components/navigation/MobileDropdownNavigationLink"
 
-export default function MobileNavbar({ navbarData }: { navbarData: NavbarDataType }) {
+export default function MobileNavbar({ navbarData }: { navbarData: NavbarDataType[] }) {
     const [isOpen, setIsOpen] = useState(false)
 
     const handleToggle = () => {

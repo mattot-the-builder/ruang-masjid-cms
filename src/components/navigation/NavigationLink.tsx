@@ -10,8 +10,6 @@ export default function NavigationLink({ title, href }: Navigation) {
 
     const isActive = pathname === href
 
-    console.log("pathname is: ", pathname)
-
     return (
         <Button variant={isActive ? "default" : "ghost"} className="block" asChild>
             <Link href={href}>
