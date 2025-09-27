@@ -1,5 +1,6 @@
 import PayloadCmsImage from "@/components/common/PayloadCmsImage";
 import ResponsiveSection from "@/components/layout/ResponsiveSection";
+import { H1 } from "@/components/ui/typography";
 import payload from "@/helpers/payload/get-payload-instance";
 import { Media } from "@/payload-types";
 import { notFound } from "next/navigation";
@@ -18,10 +19,10 @@ export default async function GalleryPage({ params }: { params: Promise<{ galler
 
     return (
         <main>
-            <ResponsiveSection>
-                <h2>
+            <ResponsiveSection className="space-y-6">
+                <H1>
                     {gallery.title}
-                </h2>
+                </H1>
                 <div className="grid grid-cols-3 gap-4">
                     {gallery.images?.map(({ image }, index) => (
                         <PayloadCmsImage key={index} image={image as Media} />
