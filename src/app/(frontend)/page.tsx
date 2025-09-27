@@ -5,7 +5,6 @@ import getCurrentMosque from '@/helpers/get-current-mosque';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import ResponsiveSection from '@/components/layout/ResponsiveSection';
-import Image from 'next/image';
 import Hero from '@/components/common/Hero';
 
 async function getHomePage() {
@@ -37,11 +36,11 @@ export default async function HomePage() {
     const homePage = await getHomePage();
 
     return (
-        <div className="home">
+        <main>
             <Hero {...homePage.hero} />
             <ResponsiveSection>
                 {homePage.title}
             </ResponsiveSection>
-        </div>
+        </main>
     )
 }
