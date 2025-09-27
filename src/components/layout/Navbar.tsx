@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import NavigationLink from "@/components/navigation/NavigationLink";
 import DropdownNavigationLink from "@/components/navigation/DropdownNavigationLink";
+import MobileNavbar from "@/components/navigation/MobileNavbar";
 
 const NavbarData = [
     { title: "Laman Utama", href: "/" },
@@ -15,8 +16,19 @@ const NavbarData = [
     { title: "Hubungi Kami", href: "/hubungi-kami" },
 ]
 
+export type NavbarDataType = typeof NavbarData
+
 export default function Navbar() {
-    return <nav className="w-full border-b">
+    return (
+        <>
+            <DesktopNavbar />
+            <MobileNavbar navbarData={NavbarData} />
+        </>
+    )
+}
+
+function DesktopNavbar() {
+    return <nav className="hidden w-full border-b lg:block">
         <div className="p-6 max-w-(--breakpoint-2xl) mx-auto flex justify-between items-center xl:px-12">
             <div className="flex items-center gap-4">
                 <Link href="/" className="font-semibold text-xl">

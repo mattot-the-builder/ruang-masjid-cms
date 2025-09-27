@@ -9,7 +9,7 @@ import { Navigation } from "@/types";
 import { ChevronDown } from "lucide-react";
 import NavigationLink from "./NavigationLink";
 
-type DropdownNavigationLinkProps = {
+export type DropdownNavigationLinkProps = {
     title: string,
     children: Navigation[]
 }
