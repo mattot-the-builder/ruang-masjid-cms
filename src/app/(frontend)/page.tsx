@@ -5,6 +5,7 @@ import getCurrentMosque from '@/helpers/get-current-mosque';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import ResponsiveSection from '@/components/layout/ResponsiveSection';
+import Image from 'next/image';
 
 async function getHomePage() {
     const mosque = await getCurrentMosque();
@@ -22,7 +23,15 @@ async function getHomePage() {
 }
 
 function Hero() {
-    return <div className="w-full max-w-(--breakpoint-2xl) mx-auto  h-[36rem] bg-red-100"></div>
+    return <div className="w-full max-w-(--breakpoint-2xl) mx-auto  h-[36rem] overflow-clip bg-red-100">
+        <Image
+            src="https://picsum.photos/1920/1080"
+            alt="picsum photo"
+            width={1920}
+            height={1080}
+            className="object-cover"
+        />
+    </div>
 }
 
 export async function generateMetadata(): Promise<Metadata> {
