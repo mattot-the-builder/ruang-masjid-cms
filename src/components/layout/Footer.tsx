@@ -3,6 +3,7 @@ import getCurrentMosque from "@/helpers/get-current-mosque";
 import { Navigation } from "@/types";
 import Link from "next/link";
 import SocialMediaLink from "../navigation/SocialMediaLink";
+import { protocol, rootDomain } from "@/constants";
 
 const footerData = [
     {
@@ -47,7 +48,7 @@ export default async function Footer() {
                     </div>
                 </div>
                 <div className="border-t pt-4 flex flex-col gap-1 items-center justify-between lg:flex-row">
-                    <span className="text-xs text-muted-foreground"> &copy; {currentYear} ruang-masjid.com. All rights reserved. </span>
+                    <span className="text-xs text-muted-foreground"> &copy; {currentYear} <a href={`${protocol}://${rootDomain}`} className="hover:underline">{rootDomain}</a>. All rights reserved. </span>
                     <div className="flex gap-4 text-xs text-muted-foreground">
                         <Link href="#" className="hover:underline">Terms and Conditions</Link>
                         <Link href="#" className="hover:underline">Privacy Policy</Link>
