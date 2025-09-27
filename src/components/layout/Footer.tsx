@@ -2,6 +2,7 @@ import ResponsiveSection from "@/components/layout/ResponsiveSection";
 import getCurrentMosque from "@/helpers/get-current-mosque";
 import { Navigation } from "@/types";
 import Link from "next/link";
+import SocialMediaLink from "../navigation/SocialMediaLink";
 
 const footerData = [
     {
@@ -33,6 +34,11 @@ export default async function Footer() {
                 <div className="flex flex-col justify-between gap-8 lg:flex-row">
                     <div>
                         {mosque.name}
+                        <div className="flex gap-4">
+                            {mosque.contact?.socialMedia?.map((socmed, index) => (
+                                <SocialMediaLink key={index} platform={socmed.platform} url={socmed.url} />
+                            ))}
+                        </div>
                     </div>
                     <div className="flex flex-col gap-6 lg:flex-row">
                         {footerData.map((linkGroup, index) => (
