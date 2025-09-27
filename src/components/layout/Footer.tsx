@@ -34,7 +34,7 @@ export default async function Footer() {
                 <div className="flex flex-col justify-between gap-8 lg:flex-row">
                     <div>
                         {mosque.name}
-                        <div className="flex gap-4">
+                        <div className="flex gap-2">
                             {mosque.contact?.socialMedia?.map((socmed, index) => (
                                 <SocialMediaLink key={index} platform={socmed.platform} url={socmed.url} />
                             ))}
