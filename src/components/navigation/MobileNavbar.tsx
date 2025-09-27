@@ -2,11 +2,11 @@
 
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
-import MobileNavigationLink from "./MobileNavigationLink"
-import { NavbarDataType } from "../layout/Navbar"
-import MobileDropdownNavigationLink from "./MobileDropdownNavigationLink"
+import MobileNavigationLink from "@/components/navigation/MobileNavigationLink"
+import { NavbarDataType } from "@/components/layout/Navbar"
+import MobileDropdownNavigationLink from "@/components/navigation/MobileDropdownNavigationLink"
 
 export default function MobileNavbar({ navbarData }: { navbarData: NavbarDataType }) {
     const [isOpen, setIsOpen] = useState(false)
@@ -15,7 +15,17 @@ export default function MobileNavbar({ navbarData }: { navbarData: NavbarDataTyp
         setIsOpen(!isOpen)
     }
 
-    return <nav className={cn("w-full border-b bg-background transition-transform duration-300 lg:hidden", isOpen ? "absolute inset-0" : "")}>
+    // 🔒 Lock scroll when overlay is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add("overflow-hidden")
+        } else {
+            document.body.classList.remove("overflow-hidden")
+        }
+        return () => document.body.classList.remove("overflow-hidden")
+    }, [isOpen])
+
+    return <nav className={cn("w-full border-b bg-background transition-transform duration-300 lg:hidden", isOpen ? "absolute inset-0 z-50" : "")}>
         <div className="p-6 flex justify-between items-center">
             <Link href="/" className="font-semibold text-xl">
                 RuangMasjid.
