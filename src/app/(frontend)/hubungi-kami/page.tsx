@@ -1,6 +1,6 @@
 import ResponsiveSection from "@/components/layout/ResponsiveSection";
 import SocialMediaLink from "@/components/navigation/SocialMediaLink";
-import { H1 } from "@/components/ui/typography";
+import { TypographyH1 } from "@/components/ui/typography";
 import getCurrentMosque from "@/helpers/get-current-mosque"
 
 export default async function ContactUsPage() {
@@ -10,7 +10,7 @@ export default async function ContactUsPage() {
         <main>
             <ResponsiveSection className="space-y-6">
                 <div className="space-y-1">
-                    <H1>Hubungi Kami</H1>
+                    <TypographyH1>Hubungi Kami</TypographyH1>
                     <p className="text-xl text-muted-foreground">Hubungi kami untuk sebarang pertanyaan.</p>
                 </div>
                 {/* <p> */}
