@@ -1,4 +1,4 @@
-// storage-adapter-import-placeholder
+import { importExportPlugin } from '@payloadcms/plugin-import-export'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
@@ -54,7 +54,9 @@ export default buildConfig({
             },
             userHasAccessToAllTenants: (user) => isSuperAdmin(user),
         }),
-        // storage-adapter-placeholder
+        importExportPlugin({
+            // see below for a list of available options
+        }),
     ],
     onInit: async (args) => {
         if (process.env.SEED_DB) {
