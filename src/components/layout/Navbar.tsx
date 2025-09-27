@@ -1,14 +1,19 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { ChevronDown } from "lucide-react";
+import NavigationLink from "@/components/navigation/NavigationLink";
+import DropdownNavigationLink from "@/components/navigation/DropdownNavigationLink";
+
+const NavbarData = [
+    { title: "Laman Utama", href: "/" },
+    {
+        title: "Galeri", children: [
+            { title: "Sampel Galeri 1", href: "/" },
+            { title: "Sampel Galeri 2", href: "/galeri/2" },
+            { title: "Sampel Galeri 3", href: "/galeri/3" },
+        ]
+    },
+    { title: "Hubungi Kami", href: "/hubungi-kami" },
+]
 
 export default function Navbar() {
     return <nav className="w-full border-b">
@@ -18,20 +23,13 @@ export default function Navbar() {
                     RuangMasjid.
                 </Link>
                 <ul className="flex gap-2">
-                    <Button variant="ghost">Link</Button>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="ghost">Dropdown <ChevronDown /></Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>Profile</DropdownMenuItem>
-                            <DropdownMenuItem>Billing</DropdownMenuItem>
-                            <DropdownMenuItem>Team</DropdownMenuItem>
-                            <DropdownMenuItem>Subscription</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                    {NavbarData.map((item, index) => {
+                        if (item.children) {
+                            return <DropdownNavigationLink key={index} {...item} />
+                        }
+
+                        return <NavigationLink key={index} title={item.title} href={item.href} />
+                    })}
                 </ul>
             </div>
             <Button size="lg">Login</Button>
